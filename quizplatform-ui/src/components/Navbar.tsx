@@ -22,6 +22,11 @@ const Navbar: React.FC = () => {
         <div className="navbar-actions">
           {isAuthenticated && user ? (
             <>
+              {user.role === 'ADMIN' && (
+                <Link to="/admin" className="btn btn-ghost btn-sm navbar-admin-link">
+                  ⚡ Admin Panel
+                </Link>
+              )}
               <div className="navbar-user">
                 <div className="navbar-avatar">
                   {user.username.charAt(0).toUpperCase()}

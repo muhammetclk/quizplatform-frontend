@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useWebSocket } from '../hooks/useWebSocket';
-import { useAuth } from '../context/AuthContext';
 import type { AttemptResult, QuizAiResult } from '../types';
 
 const ResultPage: React.FC = () => {
-  const { attemptId } = useParams<{ attemptId: string }>();
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useAuth();
 
   const result: AttemptResult | undefined = location.state?.result;
   const [aiResult, setAiResult] = useState<QuizAiResult | null>(null);

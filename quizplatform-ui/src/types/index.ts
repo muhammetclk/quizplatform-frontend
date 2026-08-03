@@ -124,3 +124,78 @@ export interface ApiResponse<T> {
   data: T;
   timestamp: string;
 }
+
+// ── Admin / Backend DTO types ────────────────────────────────────────────────
+
+export interface CategoryDto {
+  id: string;
+  name: string;
+  slug: string;
+  iconUrl?: string;
+  colorHex?: string;
+  orderIndex?: number;
+}
+
+export interface TopicDto {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  orderIndex?: number;
+  difficultyLevel?: string;
+}
+
+export interface QuizSummaryDto {
+  id: string;
+  title: string;
+  description?: string;
+  difficulty: string;
+  timeLimitSec: number;
+  questionCount: number;
+  createdAt: string;
+}
+
+// ── Admin Request types ──────────────────────────────────────────────────────
+
+export interface CreateCategoryRequest {
+  name: string;
+  slug?: string;
+  iconUrl?: string;
+  colorHex?: string;
+  orderIndex?: number;
+}
+
+export interface CreateTopicRequest {
+  categoryId: string;
+  name: string;
+  slug?: string;
+  description?: string;
+  difficultyLevel?: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED';
+  orderIndex?: number;
+}
+
+export interface CreateOptionRequest {
+  content: string;
+  isCorrect: boolean;
+  orderIndex?: number;
+}
+
+export interface CreateQuestionRequest {
+  content: string;
+  imageUrl?: string;
+  difficulty?: 'EASY' | 'MEDIUM' | 'HARD';
+  explanation?: string;
+  orderIndex?: number;
+  options: CreateOptionRequest[];
+}
+
+export interface CreateQuizRequest {
+  topicId: string;
+  title: string;
+  description?: string;
+  difficulty?: 'EASY' | 'MEDIUM' | 'HARD';
+  timeLimitSec?: number;
+  isPublished?: boolean;
+  questions: CreateQuestionRequest[];
+}
+

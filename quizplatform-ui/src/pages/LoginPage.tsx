@@ -21,7 +21,12 @@ const LoginPage: React.FC = () => {
     try {
       const res = await apiLogin(form);
       login(res);
-      navigate('/');
+      // Admins go directly to the admin panel
+      if (res.role === 'ADMIN') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
     } catch (err: any) {
       setError(err.response?.data?.message || 'Giriş başarısız. Bilgilerinizi kontrol edin.');
     } finally {

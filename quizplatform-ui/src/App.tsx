@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
@@ -9,6 +10,7 @@ import CategoryPage from './pages/CategoryPage';
 import TopicPage from './pages/TopicPage';
 import AttemptPage from './pages/AttemptPage';
 import ResultPage from './pages/ResultPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
           {/* Public routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+
+          {/* Admin-only route */}
+          <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
 
           {/* Protected routes */}
           <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
